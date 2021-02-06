@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-Dname = 'ბუასილი' #str(input('ჩაწერეთ დაავადების სახელი ქართულად: '))
+Dname = str(input('ჩაწერეთ დაავადების სახელი ქართულად: '))
 #1149 daavadeba aris agwerili bazashi
 
 def Get_DeseaseURL():
@@ -21,9 +21,8 @@ def Get_DeseaseURL():
 def scrape_info():
     Get_Dpage = requests.get(D_link)
     Disease_Page = BeautifulSoup(Get_Dpage.text, 'html.parser')
-    txt1 = Disease_Page.find('main')
-    text = txt1.find('div', class_ = 'text')
-    
+    Demo_text = Disease_Page.find('div',class_ = 'text').text
+    print(Demo_text)
 
 Get_DeseaseURL()
 

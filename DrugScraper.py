@@ -1,8 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
-import PySimpleGUI as window
 
-DrugName = str(input('ჩაწერეთ წამლის სახელი ქართულად: '))
+DrugName = 'ვენოდიოლი' #str(input('ჩაწერეთ წამლის სახელი ქართულად: '))
 print('გთხოვთ მოიცადოთ, მიმდინარეობს წამლის ძიება...')
 
 def Drug_Scraper(Name):
@@ -18,11 +17,8 @@ def Drug_Scraper(Name):
     DrugPageContent = BeautifulSoup(DrugPage.content, 'html.parser')
 
     #Then we scrape text from that page
-    GeneralInfo = DrugPageContent.find('div', class_ = 'col-xs-12 col-sm-7 p_x_0').get_text()
+    GeneralInfo = DrugPageContent.find('div', class_ = 'col-xs-12 col-sm-7 p_x_0').get_text('|', strip = True)
     DetailedInfo = DrugPageContent.find('figcaption', class_ = 'item-info').get_text()
-    #return GeneralInfo, DetailedInfo
-    lenght = len(DetailedInfo)
-    sss = round(6500 / 2000 + 0.5)
-    print(lenght)
+    print(GeneralInfo)
 
 Drug_Scraper(DrugName)
