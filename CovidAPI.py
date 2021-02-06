@@ -1,11 +1,26 @@
-import json
+from typing import Counter
 import requests
-from urllib.request import urlopen
+import json
 
-with urlopen('https://api.covid19api.com/summary') as response:
-    source = response.read()
+Get_covid_info = requests.get('https://api.covid19api.com/summary')
+Covid_JSON = json.loads(Get_covid_info.text)
 
-data = json.loads(source)
+Eng_to_geo = {'TotalConfirmed':'სულ:', 'TotalDeaths':'სიკვდილიანობა:', 'NewConfirmed':'ახალი დადასტურებული:', 'NewDeaths':'ახალი გარდაცვლილები:'}
 
-for country in data['Countries']:
-    print(country['Country'])
+def Global_COVID():
+    
+    for x in Eng_to_geo:
+        print(Eng_to_geo[x], Covid_JSON['Global'][x])
+
+COUNTRY = str(input('enter name of country: '))
+
+def Local_COVID(): 
+
+    for C in Covid_JSON["Countries"]:
+        if C['Country'] == COUNTRY:
+            for x in Eng_to_geo:
+                print(Eng_to_geo[x], C[x])
+
+Local_COVID()
+
+
