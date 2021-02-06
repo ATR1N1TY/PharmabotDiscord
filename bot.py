@@ -111,4 +111,4 @@ async def First_aid(ctx):
     await ctx.send('პირველად დახმარებაზე ინფორმაციას ნახავ აქ: http://higia.ge/ka/healthDetailed/161/484/481/')
 
 
-client.run('ODA2OTUxNjYwOTgyNjMyNDQ5.YBw6TA._mk7TbfMKc6vjzV4vCuMVcL9ahs')
+client.run('')
